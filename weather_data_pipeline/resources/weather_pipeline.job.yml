@@ -1,0 +1,14 @@
+resources:
+  jobs:
+    weather_pipeline_job:
+      name: weather_pipeline_job
+
+      schedule:
+        quartz_cron_expression: "0 0/10 * * * ?"
+        timezone_id: "Asia/Kolkata"
+
+      tasks:
+        - task_key: run_weather_pipeline
+
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.weather_data_pipeline_etl.id}
